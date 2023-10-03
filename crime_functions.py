@@ -563,7 +563,9 @@ def calculate_robbery_proportions(train, cluster_num):
     print(f"Robbery Proportion: {other_clusters_robbery_prop:.2f}")
     print(f"Attempted Robbery Proportion: {other_clusters_attempted_robbery_prop:.2f}")
 
+
 import matplotlib.pyplot as plt
+
 
 def plot_weapon_category_proportions(train, cluster_num):
     """
@@ -578,17 +580,27 @@ def plot_weapon_category_proportions(train, cluster_num):
     """
 
     # Get the weapon category counts for the given cluster
-    cluster_weapon_category_counts = train[train["cluster"] == cluster_num]["weapon_description"].value_counts().head()
+    cluster_weapon_category_counts = (
+        train[train["cluster"] == cluster_num]["weapon_description"]
+        .value_counts()
+        .head()
+    )
 
     # Get the weapon category counts for the other clusters
-    other_clusters_weapon_category_counts = train[train["cluster"] != cluster_num]["weapon_description"].value_counts().head()
+    other_clusters_weapon_category_counts = (
+        train[train["cluster"] != cluster_num]["weapon_description"]
+        .value_counts()
+        .head()
+    )
 
     # Normalize the counts to get proportions
     cluster_total = cluster_weapon_category_counts.sum()
     other_clusters_total = other_clusters_weapon_category_counts.sum()
 
     cluster_weapon_category_proportions = cluster_weapon_category_counts / cluster_total
-    other_clusters_weapon_category_proportions = other_clusters_weapon_category_counts / other_clusters_total
+    other_clusters_weapon_category_proportions = (
+        other_clusters_weapon_category_counts / other_clusters_total
+    )
 
     # Get the x-coordinates for the bars
     x = np.arange(len(cluster_weapon_category_proportions))
@@ -596,26 +608,298 @@ def plot_weapon_category_proportions(train, cluster_num):
     fig, ax = plt.subplots(figsize=(8, 6))
 
     # Plot the bars for cluster_weapon_category_proportions using the x-coordinates
-    ax.bar(x, cluster_weapon_category_proportions.values, width=0.4, label=f"Cluster {cluster_num}")
+    ax.bar(
+        x,
+        cluster_weapon_category_proportions.values,
+        width=0.4,
+        label=f"Cluster {cluster_num}",
+    )
 
     # Plot the bars for other_clusters_weapon_category_proportions by shifting the x-coordinates by 0.4
-    ax.bar(x + 0.4, other_clusters_weapon_category_proportions.values, width=0.4, label="Other Clusters")
+    ax.bar(
+        x + 0.4,
+        other_clusters_weapon_category_proportions.values,
+        width=0.4,
+        label="Other Clusters",
+    )
 
     # Set the x-ticks to the middle of the grouped bars
     ax.set_xticks(x + 0.4 / 2)
 
     # Label the x-ticks with the categories
-    ax.set_xticklabels(cluster_weapon_category_proportions.index, rotation=45, ha='right')
+    ax.set_xticklabels(
+        cluster_weapon_category_proportions.index, rotation=45, ha="right"
+    )
 
     ax.set_ylabel("Weapon Category Proportions")
-    ax.set_title(f"Weapon Category Proportions for Cluster {cluster_num} vs Other Clusters")
+    ax.set_title(
+        f"Weapon Category Proportions for Cluster {cluster_num} vs Other Clusters"
+    )
     ax.legend()
     plt.tight_layout()
     plt.show()
-import folium
-import numpy as np
+
+
 import pandas as pd
-from sklearn.cluster import DBSCAN
-from sklearn.neighbors import NearestNeighbors
-from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
+
+
+def process_data(data: pd.DataFrame) -> pd.DataFrame:
+    """
+    Process the given data according to specific transformations, renaming, and conditions.
+
+    Parameters:
+    - data (pd.DataFrame): The input data to be processed.
+
+    Returns:
+    - pd.DataFrame: The processed data.
+    """
+
+    # Rename columns for logical interpretation
+    data = data.rename(
+        columns={
+            "DR_NO": "dragnet_number",
+            "Date Rptd": "date_reported",
+            "DATE OCC": "date_occurred",
+            "TIME OCC": "time_occurred",
+            "AREA": "area_id",
+            "AREA NAME": "area_name",
+            "Rpt Dist No": "report_district",
+            "Part 1-2": "part_1_2",
+            "Crm Cd": "crime_code",
+            "Crm Cd Desc": "crime_code_description",
+            "Mocodes": "modus_operandi_code",
+            "Vict Age": "victim_age",
+            "Vict Sex": "victim_sex",
+            "Vict Descent": "victim_descent",
+            "Premis Cd": "premise_code",
+            "Premis Desc": "premise_description",
+            "Weapon Used Cd": "weapon_used_code",
+            "Weapon Desc": "weapon_description",
+            "Status": "status",
+            "Status Desc": "status_description",
+            "Crm Cd 1": "crime_code_1",
+            "Crm Cd 2": "crime_code_2",
+            "Crm Cd 3": "crime_code_3",
+            "Crm Cd 4": "crime_code_4",
+            "LOCATION": "location",
+            "Cross Street": "cross_street",
+            "LAT": "lat",
+            "LON": "lon",
+            "AREA ": "area_id",
+        }
+    )
+
+    # Select relevant columns
+    data = data[
+        [
+            "date_reported",
+            "date_occurred",
+            "time_occurred",
+            "area_name",
+            "part_1_2",
+            "crime_code_description",
+            "victim_age",
+            "victim_sex",
+            "victim_descent",
+            "premise_description",
+            "weapon_description",
+            "location",
+            "lat",
+            "lon",
+        ]
+    ]
+
+    # Convert date columns to datetime format
+    data["date_reported"] = pd.to_datetime(
+        data["date_reported"], format="%m/%d/%Y %I:%M:%S %p"
+    )
+    data["date_occurred"] = pd.to_datetime(
+        data["date_occurred"], format="%m/%d/%Y %I:%M:%S %p"
+    )
+
+    # Format the time_occurred column
+    data["time_occurred"] = data["time_occurred"].astype(str).str.zfill(4)
+    data["time_occurred"] = pd.to_datetime(data["time_occurred"], format="%H%M").dt.time
+
+    # Adjust the date_occurred column by adding hours from time_occurred
+    data["date_occurred"] = data["date_occurred"] + pd.to_timedelta(
+        data["time_occurred"].astype(str)
+    )
+
+    # Remove rows with negative ages
+    data = data[data["victim_age"] >= 0]
+
+    # Map victim_descent codes to their full names
+    descent_categories = {
+        "H": "Hispanic",
+        "W": "White",
+        "O": "Unknown",
+        "B": "Black",
+        "A": "Asian",
+        "X": "Unknown",
+        "F": "Filipino",
+        "K": "Korean",
+        "C": "Chinese",
+        "U": "Pacific Islander",
+        "J": "Japanese",
+        "V": "Vietnamese",
+        "I": "American Indian/Alaskan Native",
+        "G": "Guamanian",
+        "P": "Asian Indian",
+        "Z": "Asian Indian",
+        "S": "Samoan",
+        "D": "Cambodian",
+        "L": "Laotian",
+        "N": "Asian Indian",
+        " ": "Unknown",
+        "-": "Unknown",
+    }
+    data["victim_descent"] = data["victim_descent"].map(
+        lambda desc: descent_categories.get(desc, "Unknown")
+    )
+
+    # Clean up the victim_sex column
+    data.loc[~data["victim_sex"].isin(["M", "F", "X"]), "victim_sex"] = "Unknown"
+
+    # Handle missing values in premise and weapon descriptions
+    data["premise_description"] = data["premise_description"].fillna("Unknown")
+    data["weapon_description"] = data["weapon_description"].fillna("No Weapon")
+
+    # Categorize weapons
+    weapon_categories = {
+        "No Weapon": ["No Weapon"],
+        "Firearm": [
+            "M1-1 SEMIAUTOMATIC ASSAULT RIFLE",
+            "SEMI-AUTOMATIC PISTOL",
+            "HAND GUN",
+            "SIMULATED GUN",
+            "UNKNOWN FIREARM",
+            "SHOTGUN",
+            "AIR PISTOL/REVOLVER/RIFLE/BB GUN",
+            "REVOLVER",
+            "ASSAULT WEAPON/UZI/AK47/ETC",
+            "ANTIQUE FIREARM",
+            "SEMI-AUTOMATIC RIFLE",
+            "RIFLE",
+            "HECKLER & KOCH 93 SEMIAUTOMATIC ASSAULT RIFLE",
+            "MAC-11 SEMIAUTOMATIC ASSAULT WEAPON",
+            "SAWED OFF RIFLE/SHOTGUN",
+            "HECKLER & KOCH 91 SEMIAUTOMATIC ASSAULT RIFLE",
+            "UZI SEMIAUTOMATIC ASSAULT RIFLE",
+            "UNK TYPE SEMIAUTOMATIC ASSAULT RIFLE",
+            "M-14 SEMIAUTOMATIC ASSAULT RIFLE",
+            "AUTOMATIC WEAPON/SUB-MACHINE GUN",
+            "STARTER PISTOL/REVOLVER",
+            "MAC-10 SEMIAUTOMATIC ASSAULT WEAPON",
+            "RELIC FIREARM",
+            "OTHER FIREARM",
+        ],
+        "Melee Object": [
+            "STRONG-ARM (HANDS, FIST, FEET OR BODILY FORCE)",
+            "ROCK/THROWN OBJECT",
+            "BLUNT INSTRUMENT",
+            "BOTTLE",
+            "CLUB/BAT",
+            "STICK",
+            "PIPE/METAL PIPE",
+            "HAMMER",
+            "BELT FLAILING INSTRUMENT/CHAIN",
+            "TIRE IRON",
+            "CONCRETE BLOCK/BRICK",
+            "BOARD",
+            "BLACKJACK",
+            "BRASS KNUCKLES",
+            "MACHETE",
+            "OTHER CUTTING INSTRUMENT",
+            "FOLDING KNIFE",
+            "OTHER KNIFE",
+            "KNIFE WITH BLADE 6INCHES OR LESS",
+            "ICE PICK",
+            "KNIFE WITH BLADE OVER 6 INCHES IN LENGTH",
+            "KITCHEN KNIFE",
+            "SWITCH BLADE",
+            "DIRK/DAGGER",
+            "BOWIE KNIFE",
+            "STRAIGHT RAZOR",
+            "CLEAVER",
+            "RAZOR BLADE",
+            "SCISSORS",
+            "AXE",
+            "UNKNOWN TYPE CUTTING INSTRUMENT",
+            "SWORD",
+            "RAZOR",
+            "SCREWDRIVER",
+            "BOW AND ARROW",
+            "SYRINGE",
+        ],
+        "Threats": [
+            "UNKNOWN WEAPON/OTHER WEAPON",
+            "VERBAL THREAT",
+            "PHYSICAL PRESENCE",
+            "DEMAND NOTE",
+            "BOMB THREAT",
+        ],
+        "Other": [
+            "GLASS",
+            "MACE/PEPPER SPRAY",
+            "STUN GUN",
+            "EXPLOXIVE DEVICE",
+            "DOG/ANIMAL (SIC ANIMAL ON)",
+            "SCALDING LIQUID",
+            "ROPE/LIGATURE",
+            "TOY GUN",
+            "CAUSTIC CHEMICAL/POISON",
+            "MARTIAL ARTS WEAPONS",
+            "LIQUOR/DRUGS",
+            "FIRE",
+            "FIXED OBJECT",
+        ],
+        "Vehicle": [
+            "VEHICLE",
+        ],
+    }
+    data["weapon_category"] = data["weapon_description"].map(
+        lambda desc: next(
+            (cat for cat, weapons in weapon_categories.items() if desc in weapons),
+            "Unknown",
+        )
+    )
+
+    # Calculate the time to report and round to the nearest day
+    data["time_to_report"] = data["date_reported"] - data["date_occurred"]
+    data["time_to_report"] = data["time_to_report"].dt.round("D")
+    data.loc[
+        data["time_to_report"] < pd.Timedelta(days=0), "time_to_report"
+    ] = pd.Timedelta(days=0)
+    data["time_to_report"] = data["time_to_report"].dt.days.astype(int)
+
+    # Rename and recode the severity column
+    data = data.rename(columns={"part_1_2": "severe"})
+    data["severe"] = data["severe"].replace(2, 0)
+
+    # Handle missing lat/lon values
+    data.loc[data["lat"] == 0, "lat"] = None
+    data.loc[data["lon"] == 0, "lon"] = None
+    data = data.sort_values(by=["area_name", "date_occurred"]).fillna(method="ffill")
+
+    # Filter data for firearm incidents
+    data = data[data["weapon_category"] == "Firearm"]
+
+    # Create a binary target for 'Robbery'
+    data["is_robbery"] = data["crime_code_description"].apply(
+        lambda x: 1 if x in ["ROBBERY", "ATTEMPTED ROBBERY"] else 0
+    )
+
+    # Bin time of day
+    data["time_occurred"] = pd.to_datetime(data["time_occurred"], format="%H:%M:%S")
+    data["time_occurred"] = data["time_occurred"].dt.hour
+    bins = [0, 6, 12, 18, 24]
+    labels = ["Night", "Morning", "Afternoon", "Evening"]
+    data["time_of_day"] = pd.cut(
+        data["time_occurred"], bins=bins, labels=labels, right=False
+    )
+
+    # Identify street-related incidents
+    data["is_street"] = data["premise_description"] == "STREET"
+
+    return data
