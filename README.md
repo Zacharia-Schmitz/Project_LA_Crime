@@ -256,11 +256,11 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 ## Key findings:
 
-- RandomForest was the best at very surface level tuning
+- LogisticRegression was the best at very surface level tuning
 
 - It became overfit with more hyperparameters
 
-- Even with only 5 features, it performed very well
+- Even with only 3 features, it performed very well
 
 <br>
 <br>
