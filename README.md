@@ -1,14 +1,13 @@
-<p style="text-align: center; font-size: 3em;"> 
-Evaluating Inglewood Area Robberies
+<p style="text-align: center"> 
+ 
+# Evaluating Inglewood Area Robberies
 </p>
 
 ---
-
-<p style="text-align: right;"> 
+ 
 Zacharia Schmitz
-<p style="text-align: right;"> 
+
 3 October 2023
-</p>
 
 <p style="text-align: center;"> 
 
