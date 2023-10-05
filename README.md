@@ -114,7 +114,7 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 #### Choose columns to work with
 
-- Based on what we're looking for, we'll start with only looking at some of the features
+- Based on what we're looking for, we'll start with only looking at some of the features.
 
 #### Fix Time Occurred
 
