@@ -89,7 +89,7 @@ Zacharia Schmitz
 
 <br>
 
-### Initial hypotheses
+### Initial Hypotheses
 
 - Time of day is probably a large driver of robberies. Most likely more at night.
 
