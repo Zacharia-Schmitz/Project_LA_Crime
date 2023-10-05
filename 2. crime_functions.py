@@ -1,39 +1,27 @@
+import os
+import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import warnings
-import matplotlib.pyplot as plt
+import seaborn as sns
 import matplotlib.pyplot as plt
 
+import warnings
 warnings.filterwarnings("ignore")
-from sklearn.preprocessing import StandardScaler
+
+from scipy import stats
+from scipy.stats import ttest_1samp, chi2_contingency
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.cluster import KMeans
-from yellowbrick.cluster import KElbowVisualizer
-import folium
-import numpy as np
 from sklearn.neighbors import NearestNeighbors
 from sklearn.cluster import DBSCAN
-import os
-from scipy import stats
-from folium.plugins import HeatMap
-from wordcloud import WordCloud
-import seaborn as sns
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import OneHotEncoder
-from scipy.stats import ttest_1samp
-from scipy.stats import chi2_contingency
-from sklearn.metrics import classification_report
-import folium
-import numpy as np
-import pandas as pd
-from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import classification_report, accuracy_score
+
+import folium
+from folium.plugins import HeatMap
 from yellowbrick.cluster import KElbowVisualizer
-import matplotlib.pyplot as plt
-import seaborn as sns
-import matplotlib.pyplot as plt
-import matplotlib.pyplot as plt
 
 
 def check_columns(DataFrame, reports=False, graphs=False, dates=False):
