@@ -239,6 +239,10 @@ solver="saga"
 random_state=321
 ```
 
+**Baseline:** 53%
+
+**Test Set:** 60%
+
 <br>
 <br>
 
