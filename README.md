@@ -254,22 +254,7 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 <br>
 
-## Key findings:
-
-- LogisticRegression was the best at very surface level tuning
-
-- It became overfit with more hyperparameters
-
-- Even with only 3 features, it performed very well
-
-<br>
-<br>
-
----
-
-<br>
-
-## Questions Answered:
+## Key Findings / Questions Answered:
 
 **1. Does age affect the rate of robbery in cluster 4?**
 - Age does affect the rate of robbert in cluster 4. <br> <br>
@@ -318,13 +303,25 @@ C=10, max_iter=1000, penalty="l1", solver="saga", random_state=321
 
 <br>
 
-## Recommendations and Next Steps
+**<i>Given that this model performed 5% better than baseline on our test set, we would expect it to also perform well on unseen data**</i>
+
+### **Recommendations**
+
+#### For Modeling: 
 
 - Continue to run feature engineering and potentially test other models with other hyperparameters
 
 - Possibly create models for the other identified clusters
 
 - Potentially include some form of time series analysis to obtain trends
+
+#### For Population:
+
+- Stay out of Inglewood at night
+
+### **Next Steps**
+
+- When dealing with crime rates and stereotypes, model performance is extremely important. Making policing assumptions from a model 7 points better than baseline would not be appropriate.
 
 - Given more time and access suspect information could drastically improve the model.
 
@@ -335,5 +332,3 @@ C=10, max_iter=1000, penalty="l1", solver="saga", random_state=321
 - Combine with poverty data for more insights
 
 - Combine with house values for more insights
-
-- Stay out of Inglewood at night
