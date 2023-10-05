@@ -269,9 +269,9 @@ random_state=321
 
 ## How to Reproduce:
 
-- Clone this repo.
+1. Clone this repo.
 
-- Acquire data by:
+2. Acquire data by:
 
     - Source the two LA Crime Data files through the links
 
@@ -281,9 +281,13 @@ random_state=321
 
     <br>
 
-- Save CSVs in same folder as Jupyter Notebook with the correct naming convention
+3. Save CSVs in same folder as Jupyter Notebook with the correct naming convention
 
-- Run the notebook
+4. Run the notebook
+
+    - Do the required pip installs as they come up
+
+
 <br>
 <br>
 
