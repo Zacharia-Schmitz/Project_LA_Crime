@@ -303,7 +303,7 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
     - victim_descent
 
-- LogisticRegression had a train set accuracy of 58%, validation set accuracy of 62%, and a test set accuracy of 60%.
+- The best model between SVC, KNN, LR and DTC was LogisticRegression witha train set accuracy of 58%, validation set accuracy of 62%, and a test set accuracy of 60%.
 
 ```python
 C=10, max_iter=1000, penalty="l1", solver="saga", random_state=321
