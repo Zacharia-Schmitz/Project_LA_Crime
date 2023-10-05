@@ -31,20 +31,21 @@ Zacharia Schmitz
 <br>
 
 ---
-# Jump To:
+### Jump To:
 
-## Project Goals
-## Project Description
-## Acquire
-## Preparation Steps
-## Explore
-## Modeling
-## Conclusions
+[Project Overview](##overview)
+[Data Acquisition](##acquire)
+[Preparation](#preparation-steps)
+[Exploration](#explore)
+[Models](#modeling)
+[Conclusion](#conclusions)
 ---
 
 <br>
 
-## Project Goals
+## Overview
+
+### Project Goals
 
 - **<u>Initially:</u>** Explore high areas of gun violence in the Los Angeles area and what to do to protect yourself
 
