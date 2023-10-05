@@ -17,9 +17,9 @@ Zacharia Schmitz
 
 --- 
 
-#### Order of Processing
+#### Project Plan:
 
-### Jump To:
+*(Jump To)*
 
 [Project Overview](#overview)
 
