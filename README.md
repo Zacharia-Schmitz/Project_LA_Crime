@@ -330,4 +330,10 @@ C=10, max_iter=1000, penalty="l1", solver="saga", random_state=321
 
 - Also with more access, the closed case details could cut down on incorrect, and most importantly biased initial reporting.
 
+- Combine with weather data for more insights
+
+- Combine with poverty data for more insights
+
+- Combine with house values for more insights
+
 - Stay out of Inglewood at night

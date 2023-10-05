@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import warnings
+import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 warnings.filterwarnings("ignore")
 from sklearn.preprocessing import StandardScaler
@@ -22,6 +24,16 @@ from sklearn.preprocessing import OneHotEncoder
 from scipy.stats import ttest_1samp
 from scipy.stats import chi2_contingency
 from sklearn.metrics import classification_report
+import folium
+import numpy as np
+import pandas as pd
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from yellowbrick.cluster import KElbowVisualizer
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 
 def check_columns(DataFrame, reports=False, graphs=False, dates=False):
@@ -174,14 +186,6 @@ def split_data(df, random_state=123):
     )
     print(f"test: {len(test)} ({round(len(test)/len(df)*100)}% of {len(df)})")
     return train, validate, test
-
-
-import folium
-import numpy as np
-import pandas as pd
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
-from yellowbrick.cluster import KElbowVisualizer
 
 
 def plot_crime_clusters(train, k_optimal=5):
@@ -343,10 +347,6 @@ def plot_dbscan_clusters(train, eps=0.075, min_samples=25):
     return cluster_map
 
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-
 def plot_top_crimes_by_cluster(train):
     """
     Plots the top 5 most common crime descriptions for each cluster.
@@ -386,9 +386,6 @@ def plot_top_crimes_by_cluster(train):
     plt.show()
 
 
-import matplotlib.pyplot as plt
-
-
 def plot_average_robbery_victim_age(train, cluster_num):
     """
     Plots the average robbery victim age for the given cluster and the other clusters where is_robbery is equal to 1.
@@ -422,9 +419,6 @@ def plot_average_robbery_victim_age(train, cluster_num):
         f"Average Robbery Victim Age for Cluster {cluster_num} vs Other Clusters"
     )
     plt.show()
-
-
-import matplotlib.pyplot as plt
 
 
 def plot_victim_sex_counts(train, cluster_num):
@@ -492,6 +486,17 @@ def plot_victim_sex_counts(train, cluster_num):
 
 
 def plot_victim_descent_distribution(cluster_df, rest_df):
+    """
+    Plots the victim descent distribution for cluster 4 vs the rest of the dataset using a stacked bar chart.
+
+    Parameters:
+    cluster_df (pandas.DataFrame): The DataFrame containing the crime data for cluster 4.
+    rest_df (pandas.DataFrame): The DataFrame containing the crime data for the rest of the dataset.
+
+    Returns:
+    None
+    """
+
     # Get the victim descent distribution for cluster 4
     cluster_victim_descent = cluster_df["victim_descent"].value_counts(normalize=True)
 
@@ -562,9 +567,6 @@ def calculate_robbery_proportions(train, cluster_num):
     print("Other Clusters:")
     print(f"Robbery Proportion: {other_clusters_robbery_prop:.2f}")
     print(f"Attempted Robbery Proportion: {other_clusters_attempted_robbery_prop:.2f}")
-
-
-import matplotlib.pyplot as plt
 
 
 def plot_weapon_category_proportions(train, cluster_num):
@@ -638,9 +640,6 @@ def plot_weapon_category_proportions(train, cluster_num):
     ax.legend()
     plt.tight_layout()
     plt.show()
-
-
-import pandas as pd
 
 
 def process_data(data: pd.DataFrame) -> pd.DataFrame:
