@@ -15,6 +15,22 @@ Zacharia Schmitz
 
 *Heatmap of Robberies in Cluster 4 (Inglewood area)*
 
+--- 
+
+### Jump To:
+
+[Project Overview](##overview)
+
+[Data Acquisition](##acquire)
+
+[Preparation](#preparation-steps)
+
+[Exploration](#explore)
+
+[Models](#modeling)
+
+[Conclusion](#conclusions)
+
 </p>
 
 ---
@@ -32,21 +48,6 @@ Zacharia Schmitz
 - This data is as accurate as the data in the LA database.
 <br>
 <br>
-
----
-### Jump To:
-
-[Project Overview](##overview)
-
-[Data Acquisition](##acquire)
-
-[Preparation](#preparation-steps)
-
-[Exploration](#explore)
-
-[Models](#modeling)
-
-[Conclusion](#conclusions)
 
 ---
 
