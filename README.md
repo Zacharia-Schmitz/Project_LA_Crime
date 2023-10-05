@@ -17,6 +17,8 @@ Zacharia Schmitz
 
 --- 
 
+#### Order of Processing
+
 ### Jump To:
 
 [Project Overview](#overview)
@@ -119,6 +121,22 @@ https://data.lacity.org/Public-Safety/Crime-Data-from-2020-to-Present/2nrs-mtv8
 - **Merged CSV Format** *(crime_data.csv)*
 
 https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=sharing
+
+<br>
+<br>
+
+---
+
+<br>
+
+### Pre-Modeling Data Dictionary:
+
+<p style="text-align: center;"> 
+
+![Alt text](map_plots/image-7.png)
+
+
+ </p>
 
 <br>
 <br>
@@ -243,22 +261,6 @@ random_state=321
 **Baseline:** 53%
 
 **Test Set:** 60%
-
-<br>
-<br>
-
----
-
-<br>
-
-### Pre-Modeling Data Dictionary:
-
-<p style="text-align: center;"> 
-
-![Alt text](map_plots/image-7.png)
-
-
- </p>
 
 <br>
 <br>
