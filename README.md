@@ -135,6 +135,12 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 ![Alt text](map_plots/image-7.png)
 
+| Column | Definition |
+|--------|-----------|
+|is_robbery| Feature engineered from taking robbery and attempted robbery from crime description |
+|is_street | Feature engineered from taking if the robbery occured on the street from premise description|
+|victim_sex| Encoded column for the victim's sex. F = Female, M = Male, X = Non-Binary|
+|victim_descent| The victim's ethnicity|
 
  </p>
 
