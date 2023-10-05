@@ -277,6 +277,21 @@ random_state=321
 
 ## How to Reproduce:
 
+REQUIRED LIBRARIES:
+
+- numpy
+- pandas
+- seaborn
+- matplotlib
+- scipy
+- sklearn
+
+- folium
+    - pip install folium
+
+- yellowbrick
+    - pip install yellowbrick
+
 1. Clone this repo.
 
 2. Acquire data by:
