@@ -34,10 +34,15 @@ Zacharia Schmitz
 ### Jump To:
 
 [Project Overview](##overview)
+
 [Data Acquisition](##acquire)
+
 [Preparation](#preparation-steps)
+
 [Exploration](#explore)
+
 [Models](#modeling)
+
 [Conclusion](#conclusions)
 ---
 
