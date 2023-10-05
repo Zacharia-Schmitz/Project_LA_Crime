@@ -12,6 +12,9 @@ Zacharia Schmitz
 <p style="text-align: center;"> 
 
 ![Alt text](map_plots/image-4.png)
+
+*Heatmap of Robberies in Cluster 4 (Inglewood area)*
+
 </p>
 
 ---
