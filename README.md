@@ -31,6 +31,16 @@ Zacharia Schmitz
 <br>
 
 ---
+# Jump To:
+
+## Project Goals
+## Project Description
+## Acquire
+## Preparation Steps
+## Explore
+## Modeling
+## Conclusions
+---
 
 <br>
 
@@ -46,7 +56,7 @@ Zacharia Schmitz
 
 <br>
 
-## Project Description
+### Project Description
 
 - I initially started with 2 datasets from the city of Los Angeles.
 
@@ -66,7 +76,7 @@ Zacharia Schmitz
 
 <br>
 
-## Initial hypotheses
+### Initial hypotheses
 
 - Time of day is probably a large driver of robberies. Most likely more at night.
 
@@ -83,7 +93,7 @@ Zacharia Schmitz
 
 <br>
 
-## Acquire:
+## Acquire
 
 - **2010 to 2019 Data** *(crime_data_2010_2019).csv*
 
@@ -106,7 +116,7 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 <br>
 
-# Preparation:
+## Preparation Steps
 
 #### Logically Rename Columns
 
@@ -178,7 +188,7 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 <br>
 
-## Explore:
+## Explore
 
 - Does age affect the rate of robbery in cluster 4?
 
@@ -197,7 +207,7 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 <br>
 
-## Modeling:
+## Modeling
 
 - Use drivers in explore to build predictive models of different types
 
@@ -207,6 +217,18 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 - Evaluate the test data
 
+*Best Model on Test*
+
+Logistic Regression
+
+```python
+C=10
+max_iter=1000
+penalty="l1"
+solver="saga"
+random_state=321
+```
+
 <br>
 <br>
 
@@ -214,7 +236,7 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 <br>
 
-## Pre-Modeling Data Dictionary:
+### Pre-Modeling Data Dictionary:
 
 <p style="text-align: center;"> 
 
@@ -254,7 +276,9 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 <br>
 
-## Key Findings / Questions Answered:
+## Conclusions
+
+### Key Findings / Questions Answered:
 
 **1. Does age affect the rate of robbery in cluster 4?**
 - Age does affect the rate of robbert in cluster 4. <br> <br>
@@ -278,7 +302,7 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 
 <br>
 
-## Takeaways and Conclusions:
+### Takeaways:
 
 - With only 3 identified features, I developed a model with 60% accuracy that outperformed the baseline accuracy of 53%.
 
@@ -294,7 +318,7 @@ https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=shari
 C=10, max_iter=1000, penalty="l1", solver="saga", random_state=321
 ```
 
-- Given the limited spread between the 3 sets of data, I would expect the data to perform just as well on unseen data, with the potential of better with more features.
+**<i>Given that this model performed 5% better than baseline on our test set, we would expect it to also perform well on unseen data**</i>
 
 <br>
 <br>
@@ -302,8 +326,6 @@ C=10, max_iter=1000, penalty="l1", solver="saga", random_state=321
 ---
 
 <br>
-
-**<i>Given that this model performed 5% better than baseline on our test set, we would expect it to also perform well on unseen data**</i>
 
 ### **Recommendations**
 
@@ -332,3 +354,8 @@ C=10, max_iter=1000, penalty="l1", solver="saga", random_state=321
 - Combine with poverty data for more insights
 
 - Combine with house values for more insights
+
+
+*Back to Top*
+
+# Evaluating Inglewood Area Robberies
