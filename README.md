@@ -1,5 +1,5 @@
 <p style="text-align: center"> 
- 
+
 # Evaluating Inglewood Area Robberies
 </p>
 
@@ -366,6 +366,5 @@ C=10, max_iter=1000, penalty="l1", solver="saga", random_state=321
 - Combine with house values for more insights
 
 
-*Back to Top*
 
-# Evaluating Inglewood Area Robberies
+[Back To Top](#evaluating-inglewood-area-robberies)
