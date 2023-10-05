@@ -19,9 +19,9 @@ Zacharia Schmitz
 
 ### Jump To:
 
-[Project Overview](##overview)
+[Project Overview](#overview)
 
-[Data Acquisition](##acquire)
+[Data Acquisition](#acquire)
 
 [Preparation](#preparation-steps)
 
