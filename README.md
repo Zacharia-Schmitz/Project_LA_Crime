@@ -300,7 +300,7 @@ REQUIRED LIBRARIES:
 
     <b><u>OR</b></u>
 
-    - Download my combined CSV (750MB) of crime data from LA
+    - Download my combined CSV (750MB) of crime data from LA [here](https://drive.google.com/file/d/14FBSb-iADac0jENqeEfceTcmRi2Btaoh/view?usp=sharing)
 
     <br>
 
